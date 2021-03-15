@@ -20,68 +20,88 @@ class MessageService {
             username: "mvalerio",
             text: "Nothing, just need a beer:)",
             state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
+        },
+        {
+            username: "msandman",
+            text: "For sure.  What's up",
+            state: "sent"
+        },
+        {
+            username: "mvalerio",
+            text: "Nothing, just need a beer:)",
+            state: "sent"
         }
-        // ,
-        // {
-        //     username: "mvalerio",
-        //     text: "Beers?"
-        // },
-        // {
-        //     username: "msandman",
-        //     text: "For sure.  What's up"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Nothing, just need a beer:)"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Beers?"
-        // },
-        // {
-        //     username: "msandman",
-        //     text: "For sure.  What's up"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Nothing, just need a beer:)"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Beers?"
-        // },
-        // {
-        //     username: "msandman",
-        //     text: "For sure.  What's up"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Nothing, just need a beer:)"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Beers?"
-        // },
-        // {
-        //     username: "msandman",
-        //     text: "For sure.  What's up"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Nothing, just need a beer:)"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Beers?"
-        // },
-        // {
-        //     username: "msandman",
-        //     text: "For sure.  What's up"
-        // },
-        // {
-        //     username: "mvalerio",
-        //     text: "Nothing, just need a beer:)"
-        // }
+
     ];
 
     getChatHistory () {
