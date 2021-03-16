@@ -1,92 +1,77 @@
-import React from 'react'
+import React from "react";
 
-import MessageService from './MessageService'
-import MessageList from './Components/MessageList'
-import SendMessageForm from './Components/SendMessageForm'
+import MessageService from "./MessageService";
+import MessageList from "./Components/MessageList";
+import SendMessageForm from "./Components/SendMessageForm";
 
-class App extends React.Component {
+function App() {
+    const [currentMessages, setMessages] = React.useState([]);
+    const [currentUserIndex, setCurrentUser] = React.useState(1);
+    const [isLoadingMessages, setIsLoadingMessages] = React.useState(true);
 
-    _users =
-        [
-            {
-                username: "mvalerio",
-            },
-            {
-                username: "msandman",
-            }
-        ]
+    React.useEffect(() => {
+        const messageService = new MessageService();
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            messages: [],
-            currentUser: 0,
-            isLoadingMessages: true,
-            isSendingMessage: false
-        }
-        this.sendMessage = this.sendMessage.bind(this)
-        this.sendMessageSuccess = this.sendMessageSuccess.bind(this)
-        this.initializeChatMessages = this.initializeChatMessages.bind(this)
-    }
+        messageService.getChatHistory().then((messages) => {
+            setMessages((currentMessages) => {
+                return [...currentMessages, ...messages];
+            });
 
-    componentDidMount() {
-        const messageService = new MessageService()
+            setIsLoadingMessages((isLoadingMessages) => {
+                return false;
+            });
+        });
+    }, []);
 
-        messageService.getChatHistory()
-            .then((messages) => {
-                this.initializeChatMessages(messages);
-            })
-    }
+    const sendMessageSuccess = React.useCallback(
+        (newMessages, message) => {
+            var clonedArray = JSON.parse(JSON.stringify(newMessages));
+            clonedArray[message.index].state = "sent";
 
-    initializeChatMessages(messages) {
-        this.setState({
-            messages: [...this.state.messages, ...messages],
-            isLoadingMessages: false
-        })
-    }
+            setMessages((currentMessages) => {
+                return clonedArray;
+            });
+        }, []
+        // ,[currentMessages]
+    );
 
-    render () {
-        return (
-            <div className="app>">
-                <MessageList isLoading={this.state.isLoadingMessages} messages={this.state.messages}/>
-                <SendMessageForm sendMessage={this.sendMessage}/>
-            </div>
-        )
-    }
+    const sendMessage = React.useCallback((text) => {
+        const _userNames = ["mvalerio", "msandman"];
 
-    sendMessage(text) {
-        const currentUser = this._users[this.state.currentUser]
-
-        const index = this.state.messages.length;
+        const currentUserName = _userNames[currentUserIndex];
+        const index = currentMessages.length;
 
         const message = {
-            username: currentUser.username,
+            username: currentUserName,
             text: text,
             state: "...sending",
             index: index
-        }
+        };
 
-        this.setState( {
-            currentUser: this.state.currentUser === 0 ? 1 : 0,
-            messages: [...this.state.messages, message]
-        })
+        const newMessages = [...currentMessages, message];
 
-        const messageService = new MessageService()
+        setMessages((currentMessages) => {
+            return newMessages;
+        });
+
+        setCurrentUser((currentUserIndex) => {
+            return currentUserIndex === 0 ? 1 : 0;
+        });
+
+        const messageService = new MessageService();
         messageService.sendMessage(message).then((result) => {
             if (result.success) {
-                this.sendMessageSuccess(result.message)
+                sendMessageSuccess(newMessages, result.message);
             }
-        })
-    }
+        });
+    },[currentMessages, currentUserIndex, sendMessageSuccess]);
 
-    sendMessageSuccess(message) {
-        var clonedArray = JSON.parse(JSON.stringify(this.state.messages))
-        clonedArray[message.index].state='sent';
-
-        this.setState( {
-            messages: clonedArray
-        })
-    }
+    return (
+        <div className="app>">
+            <MessageList isLoading={isLoadingMessages} messages={currentMessages} />
+            <SendMessageForm sendMessage={sendMessage} />
+        </div>
+    );
 }
 
-export default App
+export default App;
